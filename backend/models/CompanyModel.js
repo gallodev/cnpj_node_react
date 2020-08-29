@@ -9,9 +9,7 @@ const CompanyModel = (app) => {
         .where('CNPJ', 'like', `%${search}`)
         .orWhere('nome', 'like', `%${search}`);
 
-      return {
-        data,
-      };
+      return data;
     } catch (error) {
       return error;
     }

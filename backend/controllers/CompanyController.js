@@ -3,7 +3,10 @@ module.exports = (app) => {
 
   const findCompany = async (req) => CompanyModel.findCompany(req);
 
+  const saveCompany = async (req) => CompanyModel.saveCompany(req);
+
   return {
     findCompany,
+    saveCompany,
   };
 };

@@ -4,7 +4,7 @@
   "description": "api de consulta nome / cnpj",
   "main": "index.js",
   "scripts": {
-    "start" : "knex migrate:down && knex migrate:up && node index.js",
+    "start" : "node index.js",
     "start_dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --fix config.js index.js libs/**.js controllers/**.js models/**.js routes/**.js"
