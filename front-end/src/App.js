@@ -98,11 +98,11 @@ function App() {
 
     if(value === ""){
       setSearchValue('');
-      setCompanyAutoComplete('');
-    }
+      setCompanyAutoComplete('');      
+    }        
   }
 
-  const getAutoCompleteData = () => {        
+  const getAutoCompleteData = () => {            
     if(companyAutoComplete !== ""){      
       return(<SearchList data={companyAutoComplete} onClick={handleSearchList} />)
     }
