@@ -3,7 +3,7 @@ const CompanyModel = (app) => {
 
   const findCompany = async (req) => {
     try {
-      const search = req.query;
+      const search = req.query.q;
 
       const data = await database.connection('company')
         .where('cnpj', 'like', `${search}%`)
@@ -35,7 +35,7 @@ const CompanyModel = (app) => {
         const hasCompany = await database.connection('company').where('cnpj', cnpj).select('id').first();
 
         if (hasCompany !== undefined) {
-          return `Já existe a empresa com o CNPJ :${cnpj} no banco de dados.`;
+          return `Já existe a empresa com o CNPJ : ${cnpj} no banco de dados.`;
         }
       }
 
@@ -52,7 +52,7 @@ const CompanyModel = (app) => {
         email,
       });
 
-      return id;
+      return `Registro salvo com sucesso id : ${id}`;
     } catch (error) {
       return error;
     }

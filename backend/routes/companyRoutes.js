@@ -3,7 +3,7 @@ module.exports = (app) => {
 
   const companyList = async (req, res) => {
     try {
-      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Origin', '*');      
       return res.status(200).json(await CompanyController.findCompany(req));
     } catch (error) {
       // eslint-disable-next-line no-console
