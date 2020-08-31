@@ -6,8 +6,8 @@ const CompanyModel = (app) => {
       const search = req.query;
 
       const data = await database.connection('company')
-        .where('CNPJ', 'like', `%${search}`)
-        .orWhere('nome', 'like', `%${search}`);
+        .where('cnpj', 'like', `${search}%`)
+        .orWhere('nome', 'like', `${search}%`);
 
       return data;
     } catch (error) {
@@ -18,28 +18,29 @@ const CompanyModel = (app) => {
   const saveCompany = async (req) => {
     try {
       const {
-        CNPJ,
-        nome,
-        logradouro,
-        numero,
-        complemento,
-        municipio,
-        uf,
+        cnpj,
         cep,
-        telefone,
+        complemento,
         email,
+        logradouro,
+        municipio,
+        nome,
+        numero,
+        telefone,
+        uf,
+
       } = req.body;
 
-      if (CNPJ !== undefined || CNPJ !== 0 || CNPJ !== '') {
-        const hasCompany = await database.connection('company').where('CNPJ', CNPJ).select('id').first();
+      if (cnpj !== undefined || cnpj !== 0 || cnpj !== '') {
+        const hasCompany = await database.connection('company').where('cnpj', cnpj).select('id').first();
 
         if (hasCompany !== undefined) {
-          throw new Error(`Já existe a empresa com o CNPJ :${CNPJ} no banco de dados.`);
+          return `Já existe a empresa com o CNPJ :${cnpj} no banco de dados.`;
         }
       }
 
-      const [id] = await database.connection('pacientes').insert({
-        CNPJ,
+      const [id] = await database.connection('company').returning('id').insert({
+        cnpj,
         nome,
         logradouro,
         numero,

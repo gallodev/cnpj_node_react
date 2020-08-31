@@ -8,7 +8,6 @@ module.exports = (app) => {
   app.set('json spaces', 4);
   app.use(helmet());
   app.use(cors({
-    origin: false,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['*'],
   }));

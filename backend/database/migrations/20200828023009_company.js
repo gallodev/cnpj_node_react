@@ -1,7 +1,7 @@
-exports.up = function(knex) {  
+exports.up = function(knex) {
   knex.schema.createTable('company', (table) => {
     table.increments();
-    table.string('CNPJ').unique().notNullable();
+    table.string('cnpj').unique().notNullable();
     table.string('nome').notNullable();
     table.string('logradouro').notNullable();
     table.integer('numero').notNullable();
